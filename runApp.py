@@ -6,6 +6,8 @@ root = tk.Tk()
 root.title("RUN APPS")
 apps = []
 
+# =====================Functions===================
+
 if os.path.isfile('save.txt'):
     with open('save.txt', 'r') as f:
         tempApps = f.read()
@@ -20,7 +22,7 @@ def deleteChild():
 
 def frameText():
     for app in apps:
-        lable = tk.Label(frame, text=app, bg="grey")
+        lable = tk.Label(frame, text=app, bg="#fff5ee")
         lable.pack()
 
 
@@ -45,24 +47,29 @@ def clearApps():
     deleteChild()
     frameText()
 
+# ================= GUI LAYOUT====================
 
-canvas = tk.Canvas(root, width=500, height=500, bg="#375782")
-canvas.pack()
 
-frame = tk.Frame(canvas, bg="white")
+frame1 = tk.Frame(root, width=500, height=500, bg="#375782")
+frame1.grid(row=0)
+
+frame = tk.Frame(frame1, bg="white")
 frame.place(relwidth=0.9, relheight=0.9, relx=0.05, rely=0.05)
 
-openFile = tk.Button(root, text="Open File", padx=10,
+frame2 = tk.Frame(root, width=500, height=100)
+frame2.grid(row=1)
+
+openFile = tk.Button(frame2, text="Open File", padx=55.4,
                      pady=5, fg="white", bg="#375782", command=addApps)
-openFile.pack()
+openFile.grid(row=0, column=0)
 
-runApps = tk.Button(root, text="Run Apps", padx=10,
+runApps = tk.Button(frame2, text="Run Apps", padx=55.4,
                     pady=5, fg="white", bg="#375782", command=runApp)
-runApps.pack()
+runApps.grid(row=0, column=1)
 
-clearAll = tk.Button(root, text="clear all", padx=10,
+clearAll = tk.Button(frame2, text="Clear All", padx=55.4,
                      pady=5, fg="white", bg="#375782", command=clearApps)
-clearAll.pack()
+clearAll.grid(row=0, column=2)
 
 frameText()
 
