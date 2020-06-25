@@ -12,7 +12,7 @@ if os.path.isfile('save.txt'):
     with open('save.txt', 'r') as f:
         tempApps = f.read()
         tempApp = tempApps.split(',')
-        apps = [x for x in tempApp if x.strip()]
+        apps = [x for x in tempApp if x.strip('')]
 
 
 def deleteChild():
@@ -24,7 +24,7 @@ def frameText():
     for app in apps:
         appName = app.split("/")
         lable = tk.Label(frame, text=appName[len(
-            appName)-2], bg="#fff5ee")
+            appName)-2], bg="#fff5ee", width=55)
         lable.pack()
 
 
@@ -33,7 +33,8 @@ def addApps():
 
     filename = filedialog.askopenfilename(initialdir="/", title="Select File",
                                           filetypes=(("executable", "*.exe"), ("All File", "*.*")))
-    apps.append(filename)
+    if filename not in apps:
+        apps.append(filename)
 
     frameText()
 
