@@ -22,7 +22,9 @@ def deleteChild():
 
 def frameText():
     for app in apps:
-        lable = tk.Label(frame, text=app, bg="#fff5ee")
+        appName = app.split("/")
+        lable = tk.Label(frame, text=appName[len(
+            appName)-2], bg="#fff5ee")
         lable.pack()
 
 
